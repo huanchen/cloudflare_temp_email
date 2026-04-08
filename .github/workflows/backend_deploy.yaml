@@ -59,7 +59,7 @@ jobs:
 
           # ✅ 关键修复：自动批准所有待处理的构建脚本
           pnpm install --no-frozen-lockfile
-          pnpm approve-builds --yes
+          pnpm approve-builds
 
           if [ -n "$use_mail_wasm_parser" ]; then
             echo "Using mail-parser-wasm-worker"
