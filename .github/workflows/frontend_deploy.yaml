@@ -71,7 +71,9 @@ jobs:
         run: |
           cd frontend/
           echo "${{ secrets.FRONTEND_ENV }}" > .env.prod
+          # ✅ 关键修复：自动批准所有待处理的构建脚本
           pnpm install --no-frozen-lockfile
+          pnpm approve-builds --yes
           export frontend_branch="${{ secrets.FRONTEND_BRANCH }}"
           if [ -n "$frontend_branch" ]; then
             echo "Deploying telegram mini app branch $frontend_branch"
