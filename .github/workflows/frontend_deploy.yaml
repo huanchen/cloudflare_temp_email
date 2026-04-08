@@ -32,7 +32,9 @@ jobs:
         run: |
           cd frontend/
           echo "${{ secrets.FRONTEND_ENV }}" > .env.prod
-          pnpm install --no-frozen-lockfile
+          # ✅ 关键修复：允许所有构建脚本，解决 pnpm 批准问题
+          pnpm config set allow-scripts true
+          pnpm install --no-frozen-lockfile --allow-scripts
           export frontend_branch="${{ secrets.FRONTEND_BRANCH }}"
           if [ -n "$frontend_branch" ]; then
             echo "Deploying branch $frontend_branch"

@@ -37,7 +37,9 @@ jobs:
           
           if [ -n "$use_worker_assets" ]; then
             cd frontend/
-            pnpm install --no-frozen-lockfile
+            # ✅ 关键修复：允许所有构建脚本
+            pnpm config set allow-scripts true
+            pnpm install --no-frozen-lockfile --allow-scripts
             if [ -n "$use_worker_assets_with_telegram" ]; then
               echo "Building with telegram pages"
               pnpm build:telegram:pages
@@ -54,8 +56,10 @@ jobs:
           cd worker/
           # ✅ 修复核心：使用环境变量写入，避免 Shell 解析特殊字符
           printf '%s\n' "$WRANGLER_TOML_CONTENT" > wrangler.toml
-          
-          pnpm install --no-frozen-lockfile
+
+          # ✅ 关键修复：允许所有构建脚本，解决 pnpm 批准问题
+          pnpm config set allow-scripts true
+          pnpm install --no-frozen-lockfile --allow-scripts
 
           if [ -n "$use_mail_wasm_parser" ]; then
             echo "Using mail-parser-wasm-worker"
