@@ -32,6 +32,8 @@ jobs:
         run: |
           cd frontend/
           echo "${{ secrets.FRONTEND_ENV }}" > .env.prod
+          # ✅ CI=true 让 pnpm 不进入交互模式
+          export CI=true
           # ✅ 关键修复：自动批准所有待处理的构建脚本
           pnpm install --no-frozen-lockfile
           pnpm approve-builds
