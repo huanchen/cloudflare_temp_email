@@ -4,6 +4,7 @@ packages:
 
 onlyBuiltDependencies:
   - core-js-pure
+  - es5-ext
   - esbuild
   - sharp
   - workerd
