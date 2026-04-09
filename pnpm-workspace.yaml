@@ -1,3 +1,7 @@
+packages:
+  - frontend
+  - worker
+
 onlyBuiltDependencies:
   - core-js-pure
   - esbuild
