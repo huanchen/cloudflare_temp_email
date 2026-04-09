@@ -39,7 +39,6 @@ jobs:
             cd frontend/
             export CI=true
             pnpm install --no-frozen-lockfile
-            pnpm approve-builds
             if [ -n "$use_worker_assets_with_telegram" ]; then
               echo "Building with telegram pages"
               pnpm build:telegram:pages
@@ -64,8 +63,6 @@ jobs:
 
           export CI=true
           pnpm install --no-frozen-lockfile
-          pnpm approve-builds
-
           if [ -n "$use_mail_wasm_parser" ]; then
             echo "Using mail-parser-wasm-worker"
             pnpm add mail-parser-wasm-worker
